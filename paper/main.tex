@@ -1,0 +1,313 @@
+\documentclass[twoside,twocolumn,9pt]{article}
+\usepackage{extsizes}
+\usepackage[super,sort&compress,comma]{natbib}
+\usepackage[version=3]{mhchem}
+\usepackage[left=1.5cm,right=1.5cm,top=1.785cm,bottom=2.0cm]{geometry}
+\usepackage{balance}
+\usepackage{mathptmx}
+\usepackage{sectsty}
+\usepackage{graphicx}
+\usepackage{lastpage}
+\usepackage[format=plain,justification=justified,singlelinecheck=false,font={stretch=1.125,small,sf},labelfont=bf,labelsep=space]{caption}
+\usepackage{float}
+\usepackage{fancyhdr}
+\usepackage{fnpos}
+\usepackage[english]{babel}
+\usepackage{array}
+\usepackage{droidsans}
+\usepackage{charter}
+\usepackage[T1]{fontenc}
+\usepackage[usenames,dvipsnames]{xcolor}
+\usepackage{setspace}
+\usepackage[compact]{titlesec}
+\usepackage{hyperref}
+\usepackage{amsmath}
+\usepackage{booktabs}
+\usepackage{siunitx}
+\usepackage{microtype}
+\usepackage{epstopdf}
+
+\hypersetup{colorlinks=true,linkcolor=black,citecolor=black,urlcolor=blue}
+\definecolor{cream}{RGB}{222,217,201}
+\addto{\captionsenglish}{\renewcommand{\refname}{Notes and references}}
+
+\begin{document}
+\pagestyle{fancy}
+\thispagestyle{plain}
+\fancypagestyle{plain}{\renewcommand{\headrulewidth}{0pt}}
+
+\makeFNbottom
+\makeatletter
+\renewcommand\LARGE{\@setfontsize\LARGE{15pt}{17}}
+\renewcommand\Large{\@setfontsize\Large{12pt}{14}}
+\renewcommand\large{\@setfontsize\large{10pt}{12}}
+\renewcommand\footnotesize{\@setfontsize\footnotesize{7pt}{10}}
+\renewcommand\@biblabel[1]{#1}
+\renewcommand\@makefntext[1]{\noindent\makebox[0pt][r]{\@thefnmark\,}#1}
+\makeatother
+
+\renewcommand{\thefootnote}{\fnsymbol{footnote}}
+\renewcommand\footnoterule{\vspace*{1pt}\color{cream}\hrule width 3.5in height 0.4pt \color{black}\vspace*{5pt}}
+\renewcommand{\figurename}{\small{Fig.}~}
+\sectionfont{\sffamily\Large}
+\subsectionfont{\normalsize\sffamily}
+\subsubsectionfont{\bfseries}
+\setstretch{1.125}
+\setlength{\skip\footins}{0.8cm}
+\setlength{\footnotesep}{0.25cm}
+\setlength{\jot}{10pt}
+\titlespacing*{\section}{0pt}{4pt}{4pt}
+\titlespacing*{\subsection}{0pt}{12pt}{2pt}
+\setlength{\columnsep}{6.5mm}
+\setlength\bibsep{1pt}
+\renewcommand{\topfraction}{0.95}
+\renewcommand{\dbltopfraction}{0.95}
+\renewcommand{\textfraction}{0.05}
+\renewcommand{\floatpagefraction}{0.80}
+\renewcommand{\dblfloatpagefraction}{0.80}
+
+\fancyhead{}
+\fancyfoot{}
+\fancyfoot[LO,RE]{\footnotesize\sffamily PCCP Full Paper}
+\fancyfoot[RO,LE]{\footnotesize\sffamily \thepage}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+
+\twocolumn[
+\begin{@twocolumnfalse}
+\sffamily
+\noindent\small\textbf{PCCP}\hfill\textbf{Full Paper}\\
+\color{cream}\rule{\textwidth}{1.5pt}\color{black}
+\vspace{0.8em}
+
+\noindent\LARGE\textbf{Periodic ring geometry encodes medium-range order across two- and three-dimensional carbon networks$^\dag$}\par
+\vspace{0.45cm}
+\noindent\large\textbf{AUTHOR LIST TO BE INSERTED}$^{*a}$\par
+\vspace{0.28cm}
+\noindent\normalsize Most atomistic representations are designed around local coordination, whereas network-forming materials also encode physically meaningful order in the way bonds close into rings. We introduce a periodic ring-geometry descriptor that uses a common set of topological and geometric observables in two- and three-dimensional carbon networks. In 2D, rings are periodic faces; in 3D, they are defined from representative bonds and shortest alternate periodic paths, avoiding the unit-cell dependence of finite cycle bases. Each ring is projected onto a local principal plane and summarized by raw geometry together with an optional orientation-averaged Joukowsky response. The resulting fingerprint is invariant to the tested rigid transformations, site permutations and cell replication. It captures the dominant structural signal in 120 2D carbon allotropes and remains informative in 1,500 defect-reconstructed graphene structures. For 1,500 defective-diamond structures, correcting the periodic ring definition reduces the ring-model formation-energy MAE from 0.580 to 0.287 eV; the descriptor outperforms averaged SOAP, while Matminer remains the strongest individual baseline. Adding only ten Joukowsky ring features to Matminer lowers the MAE from 0.231 to 0.219 eV. A separate SCC-DFTB+ benchmark of smooth diamond distortions reverses the ordering and favors local descriptors. Periodic ring geometry therefore provides an interpretable medium-range representation that is complementary to local atomic features rather than a universal replacement for them.\par
+\vspace{0.55cm}
+\end{@twocolumnfalse}
+]
+
+\footnotetext{\textit{$^{a}$~AFFILIATIONS TO BE INSERTED. E-mail: CORRESPONDING AUTHOR EMAIL}}
+\footnotetext{\dag~Electronic Supplementary Information (ESI) available: descriptor verification, algorithm audits, parameter and cutoff sensitivity, benchmark tables and reproducibility details.}
+\renewcommand*\rmdefault{bch}\normalfont\upshape
+\rmfamily
+
+\section*{Introduction}
+
+The predictive power of atomistic machine learning is inseparable from the representation used to encode structure. A useful representation must respect the symmetries of the underlying physics, retain the structural information relevant to the target property, and remain compact enough to support data-efficient learning and physical interpretation \cite{Butler2018,Ramprasad2017,Ward2016,Musil2021}. This requirement has motivated a broad family of atom-centered descriptors and machine-learned interatomic models in which translational, rotational and permutational symmetries are built into the representation rather than learned from data.
+
+The modern development of local atomistic representations spans high-dimensional neural-network symmetry functions \cite{Behler2007,Behler2011}, Gaussian approximation potentials and SOAP \cite{Bartok2010,Bartok2013}, spectral neighbor analysis \cite{Thompson2015}, moment tensor potentials \cite{Shapeev2016}, the atomic cluster expansion \cite{Drautz2019}, and systematic many-body tensor representations \cite{Huo2022}. Software libraries such as DScribe have made many of these descriptors directly comparable within a common computational workflow \cite{Himanen2020}. Benchmark studies have shown that different local representations trade accuracy, compactness and computational cost rather than defining a single universally optimal encoding \cite{Zuo2020}. More fundamentally, even symmetry-complete-looking low-order local descriptors can map distinct environments to the same representation, highlighting that the information retained by a descriptor is a physical modeling choice rather than a purely numerical detail \cite{Pozdnyakov2020}.
+
+A parallel line of work has increasingly learned atomic representations directly from graphs and equivariant message passing. SchNet introduced continuous-filter convolutions for atomistic systems \cite{Schutt2018}; crystal graph networks and MEGNet extended graph learning to periodic materials \cite{Xie2018,Chen2019}; and line-graph message passing explicitly incorporated bond-angle information \cite{Choudhary2021}. Energy-conserving force learning \cite{Chmiela2017}, E(3)-equivariant neural potentials such as NequIP \cite{Batzner2022}, and higher-order equivariant architectures such as MACE \cite{Batatia2022} have pushed atomistic accuracy and data efficiency further. Universal materials potentials based on graph neural networks, including M3GNet and CHGNet, now span broad regions of chemical space \cite{ChenOng2022,Deng2023}, while recent foundation models extend this trend to large heterogeneous materials datasets \cite{Batatia2025}. These approaches are powerful because they can propagate and learn multiscale information. Their latent representations, however, are not designed to expose a specific physically interpretable medium-range motif such as a ring.
+
+Rings have played that role in network science and disordered materials for decades. Early random-network models already used closed paths to characterize the structure of vitreous silica \cite{BellDean1966,King1967}. Subsequent work formalized ring definitions and demonstrated that different counting conventions can produce different structural statistics \cite{Guttman1990}. Franzblau's shortest-path criterion provided a particularly influential definition of irreducible rings for network solids \cite{Franzblau1991}, and later studies extended ring analysis to network connectivity and clustering \cite{LeRoux2010,Jain2007}. More recently, persistent homology has supplied a complementary multiscale language for cycles and cavities in atomic configurations \cite{Hiraoka2016,Morley2021}. Topological descriptors have been used for property prediction in crystals \cite{Jiang2021} and for machine-learning potentials of amorphous carbon \cite{Minamitani2023}, while explicit ring-shape anisotropy has been connected to intermediate-range order in amorphous and crystalline networks \cite{Shiga2023}. Together these studies establish that rings are not merely graph-theoretic bookkeeping: their populations, shapes and connectivity can encode structural information beyond local coordination.
+
+Carbon provides an unusually stringent setting in which to test this idea. Its allotropes and disordered phases span threefold and fourfold coordination, planar and curved networks, crystalline and amorphous order, and a wide variety of defect reconstructions \cite{Robertson2002,Hoffmann2016}. Machine-learned carbon potentials have shown that local many-body descriptors can accurately model liquid, amorphous, crystalline, surface and defect environments \cite{Deringer2017,Rowe2020}. At the same time, direct microscopy of graphene has resolved non-hexagonal topological defects \cite{Meyer2008}, graph-theoretic treatments have classified finite defect complexes through their ring structure \cite{Cockayne2012}, and free-standing monolayer amorphous carbon demonstrates experimentally that a network can remain predominantly threefold coordinated while its ring population changes dramatically \cite{Toh2020}. Ring organization is therefore a natural candidate for an interpretable structural coordinate in carbon.
+
+The rapid growth of computational 2D materials databases and structure spaces has further sharpened the representation problem \cite{Mounet2018,Haastrup2018}. Recent carbon-specific work has made topology explicit: the graph embedding tensor provides an exact periodic description of vertices, edges and faces in three-connected 2D carbon networks \cite{Macmillan2026}, while C2DTD combines ring topology with compact physics-informed structural features for 2D carbon \cite{Hawthorne2026}. These advances motivate a distinct question that remains open: can \emph{ring geometry}, rather than topology alone, be formulated as a periodic descriptor that carries the same meaning in 2D and 3D and can be quantitatively combined with established local representations?
+
+The obstacle is not feature engineering but ring definition. In two-dimensional periodic networks, the bounded faces of the embedded bond graph provide a natural physical ring set. In a three-dimensional crystal, by contrast, a finite fundamental or minimum cycle basis is not a lattice invariant; the selected cycles can depend on the unit cell, supercell and graph-basis algorithm. We address this by defining 3D rings from representative periodic bonds and their shortest alternate paths, followed by canonicalization under translation, starting index and reversal. Ring topology is then separated from raw projected geometry and from an optional orientation-averaged Joukowsky response. This separation makes it possible to ask three controlled questions: whether the ring definition is invariant to crystal representation; whether transformed ring geometry contains information beyond ordinary geometry; and whether explicit medium-range ring features complement local descriptors.
+
+We test these questions on 120 2D carbon allotropes, 1,500 defect-engineered graphene structures, 1,500 defect-engineered diamond structures, diamond/lonsdaleite invariance tests, and an independent SCC-DFTB+ benchmark of smoothly distorted diamond. The central finding is a regime-dependent division of labor. Ring features are most informative when reconstruction changes network organization; local descriptors are more effective when connectivity remains fixed and only near-neighbor geometry changes. Hybrid models improve when both scales are available, supporting periodic ring geometry as an interpretable medium-range representation rather than a replacement for local atomistic descriptors.
+\section*{Methods}
+
+\subsection*{Periodic bond graphs and ring definitions}
+
+Structures were parsed with pymatgen \cite{Ong2013}, and graph operations were implemented with NetworkX \cite{Hagberg2008}. The principal bond criterion was a Cartesian separation of 1.895~\AA. Periodic images were generated in the two in-plane lattice directions for 2D structures and in all three lattice directions for 3D structures. The reference cell was used only to assign a unique representative of a periodic object; bonds or rings crossing a cell boundary were reconstructed from periodic images rather than truncated at the boundary.
+
+For planar 2D networks, the physical ring definition is the bounded face of the periodic embedded graph. A directed half-edge construction orders neighbors by in-plane azimuth and follows each unused directed edge until a face closes. Faces are unwrapped across periodic boundaries before their geometry is evaluated, and a face is assigned to the reference cell by its centroid. The original 120-allotrope calculations used a distance-weighted minimum cycle basis followed by the same central-cell criterion. We therefore recalculated all 120 structures with explicit face tracing. Ring counts, complete ring-size multisets and all structure-level geometric means agree for every structure; the largest mean-feature difference is below \(4\times10^{-15}\).
+
+A finite cycle basis cannot be used analogously in 3D because the selected basis depends on the finite graph representation. We instead use an edge-shortest periodic definition related to shortest-path ring statistics \cite{Franzblau1991}. For every periodic bond \(e=(u,v)\) whose midpoint lies in the reference cell, \(e\) is removed and all shortest alternate paths between \(u\) and \(v\) are enumerated. Reattaching \(e\) closes each path into a candidate ring. Ring sequences are canonicalized under cyclic permutation, reversal and uniform lattice translation, after which translational duplicates are removed. The production calculations allow ring sizes up to 20 atoms. Periodic image range, primitive/conventional/supercell choice, origin shift, rigid rotation/reflection and site ordering were tested explicitly.
+
+\subsection*{Ring geometry and Joukowsky response}
+
+For a ring with unwrapped Cartesian coordinates \(\mathbf r_i\), the centroid is removed and the centered \(N\times3\) coordinate matrix is decomposed by singular-value decomposition. Projection onto the first two singular vectors gives ordered planar coordinates \(\mathbf q_i=(x_i,y_i)\). The projected polygon area and perimeter are
+\begin{equation}
+A=\frac{1}{2}\left|\sum_i x_i y_{i+1}-y_i x_{i+1}\right|,
+\qquad
+P=\sum_i \|\mathbf q_{i+1}-\mathbf q_i\|,
+\end{equation}
+with cyclic indexing. The mean radius is \(r=N^{-1}\sum_i\|\mathbf q_i-\bar{\mathbf q}\|\). Shape anisotropy is defined as \(\eta=\lambda_{\max}/\lambda_{\min}\), where \(\lambda_{\max}\) and \(\lambda_{\min}\) are the eigenvalues of the in-plane covariance matrix.
+
+The Joukowsky layer uses Eq.~(1) after centering and normalization by \(r\). Because the map depends on the orientation of the complex plane, every ring edge is aligned in turn with the positive real axis; transformed area, perimeter and anisotropy are then averaged over all edge alignments. This procedure removes dependence on the arbitrary principal-axis orientation, cycle starting vertex and traversal direction. We retain the transformed quantities \(A_J\), \(P_J\) and \(\eta_J\), together with the dimensionless responses \(R_A=A_J/A\) and \(R_P=P_J/P\). The default map parameter is \(a=0.25\). Fixed-\(a\) sensitivity calculations used \(a=0.10,0.25,0.50,0.75\), and a separate nested analysis selected \(a\) using training folds only.
+
+\subsection*{Structure-level feature vectors}
+
+Ring-level information is aggregated into three separable feature blocks. The \emph{topology} block contains graph-edge and ring counts, coordination statistics, ring-size moments and ring-size fractions. The \emph{raw geometry} block contains the mean and standard deviation of \(A\), \(P\), \(\eta\) and \(r\). The \emph{Joukowsky} block contains corresponding statistics of \(A_J\), \(P_J\), \(\eta_J\), \(R_A\) and \(R_P\). B- and N-substituted datasets additionally contain the number of B or N atoms per ring and the fraction of rings containing each dopant. Keeping the blocks separate permits direct topology/raw/J ablations.
+
+The final 3D ring vector contains 57 structural features before shared defect metadata. Dimensional quantities retain physical scale: areas scale as \(L^2\), perimeters and radii as \(L\), while \(R_A\) and \(R_P\) are scale invariant. This is deliberate; absolute ring size is part of the structural information rather than a nuisance symmetry.
+
+\subsection*{Two-dimensional allotrope benchmark}
+
+The allotrope benchmark contains 120 periodic carbon structures. At the common 1.895~\AA cutoff every central atom is threefold coordinated. Across the entire set, the largest third-neighbor distance is 1.886198~\AA and the smallest fourth-neighbor distance is 1.903005~\AA, placing the chosen cutoff inside a dataset-wide connectivity gap. The structures contain 1,218 detected rings. The scalar target is the supplied 	exttt{Etot} column; because the source table does not document its physical unit, errors are reported in native target units.
+
+The comparison includes a train-mean predictor, simple metadata \((N,\rho)\), the ring descriptor, and their concatenation. XGBoost \cite{Chen2016} hyperparameters were optimized with Optuna \cite{Akiba2019} strictly inside the training data. Five independent random seeds were used, each with five outer folds and three inner folds. The descriptor and metadata models used 10 optimization trials per outer split and the combined model used 20. Reported errors are calculated from complete out-of-fold predictions.
+
+\subsection*{Defective graphene and diamond datasets}
+
+For graphene, a \(4\times4\) supercell contains 32 sites; for diamond, a \(2\times2\times2\) conventional supercell contains 64 sites. Five hundred spatial masks containing one to five defect sites were generated and instantiated independently as vacancies, B substitutions and N substitutions, yielding 1,500 structures for each dimensionality. The same mask identifier is shared across the three defect chemistries and is used as the grouping unit during cross-validation.
+
+Atomic positions were relaxed at fixed cell with the MACE 	exttt{small-omat-0} foundation model in float64 precision \cite{Batatia2022,Batatia2025}. The convergence target was a maximum force of 0.05~eV~\AA\(^{-1}\); all 1,500 diamond calculations and all 1,500 graphene calculations used in the benchmark converged under the adopted protocol. Formation-energy labels were constructed from energies evaluated by the same MACE model,
+\begin{equation}
+E_{\mathrm f}=E_{\mathrm{tot}}-n_{\mathrm C}\mu_{\mathrm C}
+-n_{\mathrm B}\mu_{\mathrm B}-n_{\mathrm N}\mu_{\mathrm N},
+\end{equation}
+with the carbon chemical potential taken from the corresponding pristine host, B from \(\alpha\)-B$_{12}$, and N from one half of the N$_2$ reference energy. These labels provide an internally consistent response surface for descriptor comparison and are not presented as independent DFT thermochemistry.
+
+\subsection*{Local descriptor baselines}
+
+Matminer \cite{Ward2018} was used to construct local structural statistics including bond-length and bond-angle distributions, coordination, isotropic AGNI fingerprints and partial radial distribution functions. The defect-study table contains 68 Matminer-derived columns before model-side constant-feature handling.
+
+SOAP was computed with DScribe \cite{Himanen2020} using periodic boundary conditions, chemical species B/C/N, \(r_{\mathrm{cut}}=4.0\)~\AA, \(n_{\max}=6\), \(l_{\max}=4\), Gaussian width 0.5, and inner averaging over atomic environments. The resulting structure-level representation contains 855 components. These choices provide a deliberately standard local many-body reference rather than an exhaustively optimized SOAP benchmark.
+
+\subsection*{Nested cross-validation, ablations and uncertainty}
+
+The defect benchmarks use three independent random seeds, five outer folds and three inner folds, with 10 Optuna trials per outer split. Splits are grouped by the 500 spatial masks so that vacancy/B/N realizations of the same geometry never appear on opposite sides of a train/test split. Shared metadata \((n_{\mathrm{defects}},\mathrm{is_B},\mathrm{is_N})\) are supplied consistently where specified. A low-capacity defect-count/type Ridge model provides a simple baseline.
+
+Ablations compare topology, topology+raw geometry, topology+Joukowsky response and the complete topology+raw+J representation. Hybrid models concatenate ring and local features before fitting. The final Matminer hybrids were independently tuned inside every outer training set. Paired confidence intervals are obtained by bootstrap resampling of structures for the 120-allotrope benchmark and of spatial defect masks for the defect benchmarks, thereby preserving the dependence among chemical realizations of the same mask. SHAP values \cite{Lundberg2017} were evaluated only for held-out predictions.
+
+\subsection*{Smooth-distortion control and robustness audits}
+
+The independent control contains 250 54-atom diamond structures generated by random atomic displacements up to 0.25~\AA. Energies were evaluated with SCC-DFTB+ \cite{Hourahine2020} and converted to energy differences per atom relative to the lowest-energy configuration in the set. This benchmark uses five outer seeds, five outer folds, three inner folds and 15 optimization trials per split. Its purpose is to probe a regime in which connectivity remains essentially diamond-like while local distances and angles vary continuously.
+
+Cutoff sensitivity was evaluated on a stratified 117-structure sample of the 3D defect set at 1.850, 1.875, 1.895, 1.915 and 1.940~\AA. Concentration extrapolation was evaluated by training on structures with one to four defects and testing exclusively on five-defect structures. Feature-extraction timings were measured on a common stratified sample and should be interpreted as implementation-specific wall-clock measurements, not algorithmic complexity estimates.
+
+\subsection*{Software and reproducibility}
+
+The submission archive contains the final descriptor implementations, automated 2D/3D invariance tests, the aggregated numerical data underlying every figure and the figure-generation script. The archived reproduction script regenerates all main and supplementary figures, runs the ten descriptor tests, and recompiles the manuscript and Supplementary Information from a clean extracted directory. Figures are exported as vector PDF and 600-dpi PNG files.
+
+
+
+\section*{Results}
+
+\subsection*{A common ring-geometry language for 2D and 3D networks}
+
+The descriptor begins from a periodic bond graph (Fig.~\ref{fig:descriptor}). In 2D, rings are the bounded faces of the periodic planar embedding. In 3D, each representative periodic bond is temporarily removed and every shortest alternate path between its endpoints is recovered; closing the path with the removed bond defines an edge-shortest ring. Translational copies are canonicalized, so the resulting ring set is tied to the periodic network rather than to a particular finite cycle basis.
+
+For every ring, Cartesian coordinates are centered and projected onto the two leading principal directions. We record ring size, area, perimeter, mean radius and covariance anisotropy. The same projected polygon is optionally transformed by an orientation-averaged Joukowsky map. If \(z_i\) are centered complex coordinates, \(r\) is the mean radius and \(\theta_k\) is the direction of edge \(k\), we use
+\begin{equation}
+u_i^{(k)}=\frac{z_i}{r}e^{-{\rm i}\theta_k}, \qquad
+w_i^{(k)}=r\left(u_i^{(k)}+\frac{a^2}{u_i^{(k)}}\right).
+\end{equation}
+Area, perimeter and anisotropy are averaged over all edge-aligned orientations. This removes the arbitrary in-plane axis introduced by the local projection. In addition to transformed dimensional measures, we use the dimensionless ratios \(R_A=A_J/A\) and \(R_P=P_J/P\). Structure-level vectors contain ring-size fractions and statistics of topology, raw geometry and Joukowsky response.
+
+\begin{figure*}[t]
+\centering
+\includegraphics[width=17.1cm]{figures/fig1_descriptor.pdf}
+\caption{\textbf{Unified periodic ring descriptor.} \textbf{a}, In 2D the physical rings are bounded faces of the periodic bond graph. \textbf{b}, In 3D a ring is defined by a representative bond and a shortest alternate path in the periodic graph. \textbf{c}, Each ring is projected onto a local plane and optionally mapped through the orientation-averaged Joukowsky transformation. \textbf{d}, Topology, raw geometry and transformed response are aggregated into a compact fixed-length fingerprint.}
+\label{fig:descriptor}
+\end{figure*}
+\subsection*{Three-dimensional periodicity requires a cell-invariant ring definition}
+
+The original 3D prototype used a finite cycle basis. That choice fails a basic crystal test. For the same diamond lattice, a two-atom primitive cell produced no selected cycles, while a 64-atom cell produced 36 cycles with a fundamental cycle basis and 56 six-membered cycles with a minimum cycle basis. The selected ring set therefore depended on the crystallographic representation and the graph algorithm (Fig.~\ref{fig:invariance}a).
+
+The edge-shortest periodic construction removes this ambiguity in the tested networks. Primitive, conventional and replicated diamond cells all yield two rings per atom and twelve ring memberships per atom; lonsdaleite gives the same normalized count before and after \(2\times2\times2\) replication (Fig.~\ref{fig:invariance}b). Rigid rotations, reflections, origin shifts and atom reordering leave the tested 3D fingerprint unchanged to numerical precision. In 2D, primitive graphene and a \(4\times4\) supercell likewise return the same normalized descriptor.
+
+Cell invariance does not erase polymorph sensitivity. Diamond and lonsdaleite are both fourfold coordinated and contain only six-membered edge-shortest rings, yet their ring shapes differ. In the reference structures, mean anisotropy changes from approximately 1.000 to 1.085 and the mean Joukowsky area ratio changes from 0.99609 to 0.99486 (Fig.~\ref{fig:invariance}c). The descriptor therefore resolves geometry that is invisible to coordination and ring-size counts alone.
+
+\begin{figure*}[t]
+\centering
+\includegraphics[width=17.1cm]{figures/fig2_invariance.pdf}
+\caption{\textbf{Periodic consistency and polymorph sensitivity.} \textbf{a}, Finite cycle bases give cell-dependent ring counts for diamond, whereas the periodic edge-shortest definition gives two rings per atom in both representations. \textbf{b}, The corrected normalized ring count is unchanged across diamond cells and lonsdaleite replication. \textbf{c}, Diamond and lonsdaleite share coordination and ring size but differ in ring geometry and transformed response.}
+\label{fig:invariance}
+\end{figure*}
+\subsection*{Raw ring geometry carries the dominant 2D signal}
+
+We first test whether the descriptor contains useful information in a small-data setting of 120 periodic carbon allotropes. A model using only the supplied cell-size and density metadata, \(N+\rho\), gives a mean absolute error (MAE) of \(0.1247\pm0.0048\) in the native target units. The ring descriptor reduces this to \(0.0540\pm0.0024\), and combining ring features with \(N+\rho\) gives \(0.0518\pm0.0041\) (Fig.~\ref{fig:2d}a). Because the source table does not document a physical unit for this target, we do not assign one.
+
+Ablation separates what is learned from ring topology, ordinary geometry and the Joukowsky layer. Topology alone gives MAE \(0.14438\pm0.00121\). Adding Joukowsky features reduces the error to \(0.05210\pm0.00311\), but raw ring geometry performs slightly better at \(0.05076\pm0.00167\). Adding transformed features on top of raw geometry increases the mean MAE to \(0.05367\pm0.00337\) (Fig.~\ref{fig:2d}b). A structure-block bootstrap gives \(\Delta{\rm MAE}=+0.00291\) for raw+J relative to raw geometry, with a 95\% interval \([+0.00073,+0.00519]\). Selecting \(a\) only within the training folds does not reverse this result. In these planar networks the transform is therefore an alternative encoding of shape, not an independent predictive advantage.
+
+The same representation remains informative after strong 2D reconstruction. We generated 500 symmetry-distinct defect masks in a 32-site graphene supercell and instantiated each as vacancies, B substitutions and N substitutions. All 1,500 structures were relaxed with MACE. A count/type baseline gives a formation-energy MAE of \(1.151\) eV; the ring descriptor lowers it to \(0.451\) eV and Matminer to \(0.363\) eV (Fig.~\ref{fig:2d}c). The largest absolute improvement from ring information occurs for vacancies, where reconstruction directly changes the ring network.
+
+\begin{figure*}[t]
+\centering
+\includegraphics[width=17.1cm]{figures/fig3_2d_results.pdf}
+\caption{\textbf{Validation in 2D carbon.} \textbf{a}, Repeated nested-cross-validation MAE for 120 allotropes. Error bars are the standard deviation across outer seeds. \textbf{b}, Topology/raw/Joukowsky ablation. Raw ring geometry already contains the useful 2D shape signal. \textbf{c}, Formation-energy MAE for 1,500 MACE-relaxed defective graphene structures, separated by defect chemistry.}
+\label{fig:2d}
+\end{figure*}
+\subsection*{A periodic ring definition unlocks the 3D descriptor}
+
+The defective-diamond benchmark uses 500 spatial masks in a 64-site supercell, again instantiated as vacancies, B substitutions and N substitutions. All 1,500 MACE relaxations reached a maximum-force threshold of \(0.05\) eV\,\AA\(^{-1}\). Grouped outer splits keep the three chemical realizations of each spatial mask together, preventing pattern leakage.
+
+Replacing the finite cycle basis by the periodic edge-shortest definition has a large quantitative effect. The legacy ring model has an overall MAE of \(0.580\) eV, while the corrected representation reaches \(0.287\) eV (Fig.~\ref{fig:3d}a). Averaged periodic SOAP gives \(0.352\) eV and the Matminer local-geometry baseline gives \(0.231\) eV. The correction therefore nearly halves the error of the ring model and changes the 3D benchmark from a weak representation into a competitive one.
+
+Here the Joukowsky response is no longer redundant. Topology alone gives \(0.3976\) eV; topology plus raw ring geometry gives \(0.2994\) eV; topology plus Joukowsky features gives \(0.2827\) eV; and the combined topology+raw+J model reaches \(0.2810\) eV (Fig.~\ref{fig:3d}b). Relative to raw geometry, adding J lowers MAE by \(0.01836\) eV, with a mask-block bootstrap 95\% interval of \([-0.02852,-0.00824]\) eV. The contrast with 2D is useful: the transformed response is not intrinsically superior, but it becomes informative for the broader shape distortions generated by non-planar rings and their local-plane projections.
+
+Performance also depends strongly on defect chemistry (Fig.~\ref{fig:3d}c). The periodic ring model is particularly effective for vacancy structures, where medium-range reconstruction is most pronounced, while the local Matminer representation remains stronger overall.
+
+\begin{figure*}[t]
+\centering
+\includegraphics[width=17.1cm]{figures/fig4_3d_results.pdf}
+\caption{\textbf{Corrected 3D periodic rings.} \textbf{a}, Overall formation-energy MAE for the count/type baseline, legacy cycle-basis descriptor, corrected periodic ring descriptor, averaged SOAP and Matminer. \textbf{b}, Feature ablation shows a statistically supported incremental contribution from the Joukowsky response in 3D. \textbf{c}, MAE separated by defect chemistry.}
+\label{fig:3d}
+\end{figure*}
+\subsection*{Local and ring descriptors resolve complementary structural regimes}
+
+A separate 250-structure SCC-DFTB+ dataset provides a deliberately different test. The structures are 54-atom diamond configurations with random displacements up to 0.25 \AA; connectivity remains largely diamond-like while bond lengths and angles vary continuously. In this regime, the ring representation remains close to a mean baseline, with MAE about \(0.0506\) eV/atom. Matminer and SOAP instead reach \(0.0299\) and \(0.0291\) eV/atom. Normalizing each task by its own simple baseline exposes the reversal directly (Fig.~\ref{fig:regimes}a): ring features are relatively strong for defect reconstruction, whereas local descriptors are better for smooth distortions.
+
+This difference motivates a more stringent test than pairwise ranking: do the representations carry complementary information? They do. Under independently nested-tuned models, Matminer alone gives \(0.23064\) eV on the defective-diamond benchmark. Adding only ten Joukowsky features lowers the MAE to \(0.21947\pm0.00172\) eV, with paired \(\Delta{\rm MAE}=-0.01123\) eV and 95\% interval \([-0.02135,-0.00087]\). Adding topology and raw ring geometry reaches \(0.21557\pm0.00657\) eV (Fig.~\ref{fig:regimes}b). Once the full raw ring block is included, the extra J layer is statistically redundant. Thus the transformed features provide a compact route to part of the medium-range signal, while the full ring representation provides the strongest complement.
+
+\begin{figure*}[t]
+\centering
+\includegraphics[width=17.1cm]{figures/fig5_regimes_hybrids.pdf}
+\caption{\textbf{Descriptor regime and complementarity.} \textbf{a}, MAE normalized by the task-specific simple baseline for defect reconstruction and smooth DFTB+ distortion. The ordering of descriptor classes reverses between regimes. \textbf{b}, Independently tuned hybrid models on defective diamond. Adding a compact ten-feature Joukowsky block or the full ring block improves the strongest local baseline.}
+\label{fig:regimes}
+\end{figure*}
+\subsection*{Robustness tests delimit extrapolation and cutoff sensitivity}
+
+The hardest transfer test trains on one to four defects and evaluates only five-defect structures. No representation dominates every class (Fig.~\ref{fig:robustness}c). The count/type baseline gives the lowest aggregate MAE, \(0.869\) eV, because defect count itself extrapolates linearly; the periodic ring model gives \(1.142\) eV, Matminer \(1.337\) eV and averaged SOAP \(2.218\) eV. By class, the ring and local models exchange advantages. We therefore treat concentration extrapolation as a limit test, not as evidence for universal transfer.
+
+Graph descriptors also depend on the bond criterion. The 120-allotrope 2D set has an unusually clean global neighbor gap: the largest third-neighbor distance is 1.886198 \AA\ and the smallest fourth-neighbor distance is 1.903005 \AA, so the chosen 1.895 \AA\ cutoff is topologically stable throughout that interval. For 3D defects, a stratified 117-structure audit over 1.85--1.94 \AA\ preserves the exact ring-size distribution in 97.4--99.1\% of structures relative to 1.895 \AA\ (Fig.~\ref{fig:robustness}a).
+
+The current implementation is compact but not optimized for throughput. It uses 57 ring features, compared with 68 Matminer features and 855 SOAP components. In a small timing audit it requires about 0.30 s per structure, versus 0.040 s for the Matminer pipeline and 0.0025 s for averaged SOAP (Fig.~\ref{fig:robustness}b). The present claim is therefore interpretability and complementary structural scale, not raw speed.
+
+\begin{figure*}[t]
+\centering
+\includegraphics[width=17.1cm]{figures/fig6_robustness.pdf}
+\caption{\textbf{Robustness and limits.} \textbf{a}, Fraction of a stratified 3D sample retaining the exact ring-size distribution as the bond cutoff is varied around the reference value (dashed line). \textbf{b}, Descriptor dimension versus measured extraction time for the current implementations; timings are implementation-specific and are not asymptotic complexity benchmarks. \textbf{c}, Extrapolation from one-to-four defects to five-defect diamond structures, resolved by defect chemistry.}
+\label{fig:robustness}
+\end{figure*}
+
+\section*{Discussion}
+
+The results identify a structural scale that is often implicit in atomistic machine learning. Local descriptors are naturally sensitive to bond lengths, bond angles and smooth changes of coordination; explicit ring features respond instead to how those local environments close into network motifs. Neither scale is sufficient in every regime. The SCC-DFTB+ control makes this distinction concrete: when the diamond network is smoothly distorted without substantial topological change, the ring representation remains close to a mean baseline while SOAP and Matminer resolve the energetic variation. In defect-reconstructed diamond, where vacancies and substitutions reorganize the network, the ordering changes and the periodic ring descriptor outperforms the averaged SOAP representation used here.
+
+This is not simply a difference in model capacity. The hybrid experiments show that the two representation classes carry non-identical information. Matminer alone reaches 0.2306 eV MAE, whereas adding ten transformed ring features lowers the error to 0.2195 eV and adding the full topology/raw ring block lowers it to 0.2156 eV. The improvement persists under independently tuned nested cross-validation and paired resampling of defect masks. In that sense, the ring descriptor behaves as an explicit medium-range coordinate: it can add information even after a strong local representation has already encoded radial, angular and coordination statistics. This complements the broader observation that atomistic representations differ not only in resolution but also in which structural correlations they make easy for a model to access \cite{Musil2021,Pozdnyakov2020}.
+
+The 2D/3D comparison is equally informative. In planar carbon, the Joukowsky-derived area and perimeter remain almost collinear with their raw counterparts, and the nested ablation does not support an incremental predictive gain over raw ring geometry. In the corrected 3D representation, the transformed response does improve the raw ring model. We interpret this difference geometrically rather than as evidence for a universal advantage of conformal mapping. Three-dimensional rings are generally non-planar, so the local principal-plane projection produces a broader family of polygonal shapes and anisotropies than in strictly planar networks. The Joukowsky response ratios then act as nonlinear shape probes of that projected geometry. When raw local and raw ring features are already both present, however, the transformed layer again becomes largely redundant.
+
+The most fundamental methodological point is the definition of a ring in a periodic crystal. A finite fundamental or minimum cycle basis is a property of the chosen finite graph representation, not automatically of the infinite lattice. The diamond counterexample shows that this distinction is practically consequential: different cell representations of the same lattice produced incompatible cycle sets and a substantially weaker descriptor. Anchoring rings to representative periodic bonds and shortest alternate paths restores the expected normalized invariance in the tested diamond and lonsdaleite cells and connects the construction to the shortest-path view of irreducible rings in network solids \cite{Franzblau1991,LeRoux2010}. We therefore regard the periodic ring definition, rather than the subsequent machine-learning model, as the central methodological contribution.
+
+The descriptor remains intentionally interpretable. Ring-size fractions, projected area, perimeter, radius, anisotropy and transformed response can all be traced back to explicit network motifs. That transparency distinguishes the present construction from latent graph embeddings, but it also imposes limits. Global aggregation discards the spatial arrangement of rings with identical marginal statistics; ring connectivity and clustering can therefore distinguish structures that the present vector may not \cite{Jain2007}. Likewise, a fixed geometric bond criterion can change discretely when a structure is strongly distorted or when chemistry broadens the bond-length distribution. The cutoff audit shows that this is not a dominant issue in the present datasets, but species-aware, bond-order or adaptive connectivity would be appropriate extensions for more chemically diverse systems.
+
+The energetic benchmarks should also be interpreted at the level for which they were designed. The 3,000 defect structures were relaxed and evaluated with a MACE foundation model, not with independent DFT calculations. MACE and related equivariant potentials make such large controlled structural studies feasible \cite{Batatia2022,Batatia2025}, but the resulting formation energies are best viewed as internally consistent response surfaces for comparing descriptors. The absolute B/N formation energies inherit the chosen reservoirs, and the energetic 3D benchmark is centered on defective diamond rather than on the full space of carbon allotropes. None of these caveats affects the geometric invariance tests, which are independent of the energy model.
+
+
+\section*{Conclusions}
+
+The resulting picture is a multiscale one. Local representations resolve continuous atomic environments; periodic ring geometry resolves how those environments assemble into medium-range network motifs. The useful question is therefore not which descriptor is universally superior, but which structural scale controls the variation of interest. For defect-driven carbon networks the two scales are measurably complementary. This suggests a natural next step: representations that retain local atomic detail while treating rings and ring--ring connectivity as explicit higher-level objects rather than collapsing the entire network into a single global vector.
+
+\section*{Author contributions}
+AUTHOR CONTRIBUTIONS TO BE INSERTED USING AUTHOR INITIALS.
+
+
+\section*{Conflicts of interest}
+There are no conflicts to declare.
+
+
+\section*{Data availability}
+The aggregated numerical data required to reproduce every main and supplementary figure are included with the submission package. The full structural datasets and MACE records will be deposited in a public repository before publication. The 2D and 3D periodic ring descriptors, automated tests and figure-generation scripts will be released openly on GitHub at \href{https://github.com/periodic-ring-descriptors/Jowkoski}{github.com/periodic-ring-descriptors/Jowkoski} (provisional URL; the permanent repository and archival DOI will be provided before publication).
+
+
+
+\section*{Acknowledgements}
+ACKNOWLEDGEMENTS AND FUNDING TO BE INSERTED.
+
+
+
+\balance
+\bibliography{references}
+\bibliographystyle{rsc}
+\end{document}

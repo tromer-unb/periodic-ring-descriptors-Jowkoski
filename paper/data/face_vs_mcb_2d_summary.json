@@ -1,0 +1,17 @@
+{
+  "n_systems": 120,
+  "same_ring_count": 120,
+  "same_ring_size_multiset": 120,
+  "max_abs_mean_metric_delta": {
+    "area": 2.6645352591003757e-15,
+    "perimeter": 3.552713678800501e-15,
+    "anisotropy": 4.440892098500626e-16,
+    "mean_radius": 4.440892098500626e-16,
+    "j_area": 3.552713678800501e-15,
+    "j_perimeter": 3.552713678800501e-15,
+    "j_anisotropy": 4.440892098500626e-16,
+    "j_area_ratio": 3.3306690738754696e-16,
+    "j_perimeter_ratio": 6.661338147750939e-16
+  },
+  "systems_different_sizes": []
+}

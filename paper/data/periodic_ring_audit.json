@@ -1,0 +1,170 @@
+{
+  "definition": "edge-shortest rings: bond plus every shortest alternate path",
+  "cutoff_angstrom": 1.895,
+  "max_ring_size": 12,
+  "cases": [
+    {
+      "name": "input_primitive",
+      "n_atoms": 2,
+      "n_central_bonds": 4,
+      "n_rings": 4,
+      "ring_size_counts": {
+        "6": 4
+      },
+      "rings_per_atom": 2.0,
+      "ring_memberships_per_atom": 12.0,
+      "metrics": {
+        "area_mean": 5.530179769182851,
+        "area_std": 9.930136612989092e-16,
+        "perimeter_mean": 8.753765971381334,
+        "perimeter_std": 0.0,
+        "anisotropy_mean": 1.0000000000000004,
+        "anisotropy_std": 1.1102230246251565e-16,
+        "mean_radius_mean": 1.4589609952302225,
+        "mean_radius_std": 2.9373740229761033e-16,
+        "j_area_mean": 5.508577504459481,
+        "j_area_std": 0.0,
+        "j_perimeter_mean": 8.762583456110065,
+        "j_perimeter_std": 1.2560739669470201e-15,
+        "j_anisotropy_mean": 1.2844444444441407,
+        "j_anisotropy_std": 1.5700924586837752e-16,
+        "j_area_ratio_mean": 0.9960937500000002,
+        "j_area_ratio_std": 1.3597399555105182e-16,
+        "j_perimeter_ratio_mean": 1.0010072790108344,
+        "j_perimeter_ratio_std": 1.5700924586837752e-16
+      }
+    },
+    {
+      "name": "standard_primitive",
+      "n_atoms": 2,
+      "n_central_bonds": 4,
+      "n_rings": 4,
+      "ring_size_counts": {
+        "6": 4
+      },
+      "rings_per_atom": 2.0,
+      "ring_memberships_per_atom": 12.0,
+      "metrics": {
+        "area_mean": 5.53017976918285,
+        "area_std": 1.1749496091904413e-15,
+        "perimeter_mean": 8.753765971381334,
+        "perimeter_std": 0.0,
+        "anisotropy_mean": 1.0000000000000004,
+        "anisotropy_std": 2.9373740229761033e-16,
+        "mean_radius_mean": 1.4589609952302225,
+        "mean_radius_std": 2.9373740229761033e-16,
+        "j_area_mean": 5.508577504459481,
+        "j_area_std": 6.280369834735101e-16,
+        "j_perimeter_mean": 8.762583456110063,
+        "j_perimeter_std": 8.881784197001252e-16,
+        "j_anisotropy_mean": 1.2844444444441407,
+        "j_anisotropy_std": 1.5700924586837752e-16,
+        "j_area_ratio_mean": 0.9960937500000002,
+        "j_area_ratio_std": 1.7554167342883506e-16,
+        "j_perimeter_ratio_mean": 1.0010072790108344,
+        "j_perimeter_ratio_std": 1.1102230246251565e-16
+      },
+      "delta_rings_per_atom_vs_input": 0.0,
+      "delta_memberships_per_atom_vs_input": 0.0
+    },
+    {
+      "name": "conventional",
+      "n_atoms": 8,
+      "n_central_bonds": 16,
+      "n_rings": 16,
+      "ring_size_counts": {
+        "6": 16
+      },
+      "rings_per_atom": 2.0,
+      "ring_memberships_per_atom": 12.0,
+      "metrics": {
+        "area_mean": 5.530179769182851,
+        "area_std": 9.678699938266253e-16,
+        "perimeter_mean": 8.753765971381334,
+        "perimeter_std": 6.280369834735101e-16,
+        "anisotropy_mean": 1.0000000000000004,
+        "anisotropy_std": 2.482534153247273e-16,
+        "mean_radius_mean": 1.4589609952302225,
+        "mean_radius_std": 2.4196749845665633e-16,
+        "j_area_mean": 5.508577504459481,
+        "j_area_std": 3.8459253727671276e-16,
+        "j_perimeter_mean": 8.762583456110065,
+        "j_perimeter_std": 1.472877282518059e-15,
+        "j_anisotropy_mean": 1.2844444444441407,
+        "j_anisotropy_std": 2.4196749845665633e-16,
+        "j_area_ratio_mean": 0.9960937500000001,
+        "j_area_ratio_std": 1.2719202621569003e-16,
+        "j_perimeter_ratio_mean": 1.0010072790108344,
+        "j_perimeter_ratio_std": 9.614813431917819e-17
+      },
+      "delta_rings_per_atom_vs_input": 0.0,
+      "delta_memberships_per_atom_vs_input": 0.0
+    },
+    {
+      "name": "primitive_2x2x2",
+      "n_atoms": 16,
+      "n_central_bonds": 32,
+      "n_rings": 32,
+      "ring_size_counts": {
+        "6": 32
+      },
+      "rings_per_atom": 2.0,
+      "ring_memberships_per_atom": 12.0,
+      "metrics": {
+        "area_mean": 5.53017976918285,
+        "area_std": 2.334110243043934e-15,
+        "perimeter_mean": 8.753765971381334,
+        "perimeter_std": 2.059156955057807e-15,
+        "anisotropy_mean": 1.0000000000000009,
+        "anisotropy_std": 4.1354876261643746e-16,
+        "mean_radius_mean": 1.4589609952302225,
+        "mean_radius_std": 4.1725779438208954e-16,
+        "j_area_mean": 5.508577504459481,
+        "j_area_std": 2.6691571797624175e-15,
+        "j_perimeter_mean": 8.762583456110065,
+        "j_perimeter_std": 2.737549743767154e-15,
+        "j_anisotropy_mean": 1.2844444444441407,
+        "j_anisotropy_std": 2.9893669801409083e-16,
+        "j_area_ratio_mean": 0.9960937500000001,
+        "j_area_ratio_std": 1.9918372637938335e-16,
+        "j_perimeter_ratio_mean": 1.0010072790108344,
+        "j_perimeter_ratio_std": 1.7109685898544713e-16
+      },
+      "delta_rings_per_atom_vs_input": 0.0,
+      "delta_memberships_per_atom_vs_input": 0.0
+    },
+    {
+      "name": "dataset_pristine_64",
+      "n_atoms": 64,
+      "n_central_bonds": 128,
+      "n_rings": 128,
+      "ring_size_counts": {
+        "6": 128
+      },
+      "rings_per_atom": 2.0,
+      "ring_memberships_per_atom": 12.0,
+      "metrics": {
+        "area_mean": 5.50878365483258,
+        "area_std": 2.128329680570841e-15,
+        "perimeter_mean": 8.736815519661612,
+        "perimeter_std": 1.6467268631127714e-15,
+        "anisotropy_mean": 1.0000000000000004,
+        "anisotropy_std": 4.835368602791419e-16,
+        "mean_radius_mean": 1.456135919943602,
+        "mean_radius_std": 2.611090194369167e-16,
+        "j_area_mean": 5.48726496868089,
+        "j_area_std": 1.814119370099142e-15,
+        "j_perimeter_mean": 8.745615930556099,
+        "j_perimeter_std": 1.0877919644084146e-15,
+        "j_anisotropy_mean": 1.2844444444441394,
+        "j_anisotropy_std": 2.0770370905276122e-16,
+        "j_area_ratio_mean": 0.99609375,
+        "j_area_ratio_std": 1.722188176232883e-16,
+        "j_perimeter_ratio_mean": 1.0010072790108349,
+        "j_perimeter_ratio_std": 4.710277376051325e-16
+      },
+      "delta_rings_per_atom_vs_input": 0.0,
+      "delta_memberships_per_atom_vs_input": 0.0
+    }
+  ]
+}

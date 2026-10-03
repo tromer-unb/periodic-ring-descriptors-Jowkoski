@@ -1,0 +1,20 @@
+{
+  "jowkoski": {
+    "mean_seconds": 0.297948456296244,
+    "median_seconds": 0.2928409930009366,
+    "std_seconds": 0.04515886479211752,
+    "n_features": 57
+  },
+  "matminer": {
+    "mean_seconds": 0.039756302185196546,
+    "median_seconds": 0.038562179999644286,
+    "std_seconds": 0.0045752119849900965,
+    "n_features": 68
+  },
+  "soap": {
+    "mean_seconds": 0.0025351365553366056,
+    "median_seconds": 0.002541875999668264,
+    "std_seconds": 0.00018647937549961196,
+    "n_features": 855
+  }
+}

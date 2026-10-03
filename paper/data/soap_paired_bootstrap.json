@@ -1,0 +1,29 @@
+{
+  "jowkoski_minus_soap": {
+    "mean_delta_mae": -0.06510312966046036,
+    "ci95": [
+      -0.09067616750007641,
+      -0.041679605188931476
+    ],
+    "p_boot_delta_ge_0": 0.0,
+    "wins_by_seed": 3
+  },
+  "jowkoski_minus_matminer": {
+    "mean_delta_mae": 0.056081968200391484,
+    "ci95": [
+      0.040216109573041725,
+      0.07186598010956449
+    ],
+    "p_boot_delta_ge_0": 1.0,
+    "wins_by_seed": 0
+  },
+  "soap_minus_matminer": {
+    "mean_delta_mae": 0.12118509786085187,
+    "ci95": [
+      0.09880100232145075,
+      0.14676608884484457
+    ],
+    "p_boot_delta_ge_0": 1.0,
+    "wins_by_seed": 0
+  }
+}

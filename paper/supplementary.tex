@@ -1,0 +1,170 @@
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{newtxtext,newtxmath}
+\usepackage{graphicx,booktabs,siunitx,amsmath,microtype}
+\usepackage{xcolor,hyperref,natbib,caption,longtable}
+\hypersetup{colorlinks=true,linkcolor=black,citecolor=black,urlcolor=blue}
+\captionsetup{font=small,labelfont=bf}
+\title{\textbf{Electronic Supplementary Information (ESI)}\\
+\large Periodic ring geometry encodes medium-range order across two- and three-dimensional carbon networks}
+\author{AUTHOR LIST TO BE INSERTED}
+\date{}
+\begin{document}
+\maketitle
+
+\section*{Supplementary Note 1: Descriptor verification}
+
+The final code release was tested jointly with the 2D and 3D suites. All ten automated tests passed. The tests cover physical units at the identity map, rotation, reflection, cycle direction and starting-vertex independence, scaling of dimensional and dimensionless Joukowsky quantities, rejection of singular ring geometry, the graphene reference output, graphene primitive/supercell replication, diamond coordination, diamond cell invariance, lonsdaleite cell invariance, 3D origin shift, rigid rotation/reflection and atomic-site reordering.
+
+\begin{table}[htbp]
+\centering
+\caption{\textbf{Verified descriptor properties.} Tested denotes an automated numerical test in the archived code.}
+\begin{tabular}{lll}
+\toprule
+Property & 2D & 3D\\
+\midrule
+Periodic boundary handling & explicit & explicit\\
+Rigid translation / origin shift & periodic convention & tested\\
+Rigid rotation & tested & tested\\
+Reflection & tested & tested\\
+Vertex/site ordering & tested & tested\\
+Unit-cell replication & graphene tested & diamond/lonsdaleite tested\\
+Length scaling & tested & inherited ring geometry\\
+Finite cycle-basis dependence & avoided by faces & avoided by edge-shortest rings\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\section*{Supplementary Note 2: 2D face definition and historical cycle implementation}
+
+The physical 2D definition used in the manuscript is the bounded face of the periodic planar bond graph. The original 120-allotrope calculations had used a distance-weighted minimum cycle basis followed by central-cell filtering. To verify that the historical data remain compatible with the publication definition, all 120 structures were recalculated by explicit directed-half-edge face tracing.
+
+All 120 structures have the same ring count and the same complete multiset of ring sizes under both algorithms. Across area, perimeter, anisotropy, mean radius, transformed quantities and Joukowsky ratios, the largest absolute difference between corresponding structure-level means is below \(4\times10^{-15}\), i.e. numerical roundoff.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=.92\linewidth]{figures/figS2_algorithm_cutoff.pdf}
+\caption{\textbf{Algorithm and cutoff audits.} \textbf{a}, Agreement between planar face tracing and the historical minimum-cycle implementation across all 120 allotropes. \textbf{b}, Mean changes in normalized ring count and Joukowsky area response under 3D cutoff perturbations.}
+\label{fig:S2}
+\end{figure}
+
+\section*{Supplementary Note 3: Joukowsky parameter sensitivity}
+
+The default map parameter is \(a=0.25\). Fixed-\(a\) scans were repeated for \(a=0.10,0.25,0.50,0.75\), and a separate nested procedure selected \(a\) only within each outer training split. Neither analysis changes the 2D conclusion: topology plus raw geometry remains at least as accurate as the corresponding model with transformed features.
+
+At \(a=0.25\), raw and transformed mean area have Pearson \(r=0.99986\), raw and transformed mean perimeter have \(r=0.99934\), and raw and transformed mean anisotropy have \(r=0.9591\). Larger \(a\) values reduce some correlations but do not yield a consistent cross-validated advantage.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=.92\linewidth]{figures/figS1_joukowsky_parameter.pdf}
+\caption{\textbf{Sensitivity to the Joukowsky map parameter in 2D.} \textbf{a}, Cross-validated MAE over the fixed-\(a\) scan; the dashed line is topology plus raw geometry. \textbf{b}, Correlation between raw and transformed structure-level geometric means.}
+\label{fig:S1}
+\end{figure}
+
+\section*{Supplementary Note 4: 3D cutoff audit}
+
+A stratified sample of 117 relaxed defective-diamond structures was selected across defect chemistry and defect count. Each structure was recalculated with cutoffs 1.850, 1.875, 1.895, 1.915 and 1.940 \AA. Relative to the principal 1.895 \AA\ value, 97.4--99.1\% of structures retain exactly the same ring-size distribution at the perturbed cutoffs.
+
+\begin{table}[htbp]
+\centering
+\caption{\textbf{3D cutoff sensitivity.}}
+\begin{tabular}{rrrr}
+\toprule
+Cutoff (\AA) & exact ring distribution (\%) & mean \(|\Delta|\) rings/atom & mean \(|\Delta R_A|\)\\
+\midrule
+1.850 & 97.44 & 0.002404 & \(1.45\times10^{-7}\)\\
+1.875 & 97.44 & 0.002404 & \(1.45\times10^{-7}\)\\
+1.895 & 100.00 & 0 & 0\\
+1.915 & 99.15 & 0.000801 & \(3.26\times10^{-8}\)\\
+1.940 & 98.29 & 0.001603 & \(6.24\times10^{-8}\)\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+These changes are discrete changes in the bond graph rather than numerical instability. In the 2D allotrope set, every structure shares a gap between the largest third-neighbor distance (1.886198 \AA) and the smallest fourth-neighbor distance (1.903005 \AA).
+
+\section*{Supplementary Note 5: Machine-learning protocols}
+
+For the 120-allotrope benchmark, five random seeds each generate five outer folds. Hyperparameters are optimized by three inner folds. The ring-only and metadata-only models use 10 Optuna trials per outer split; the combined model uses 20. Reported means and standard deviations are calculated from one complete out-of-fold prediction of all 120 systems for each seed.
+
+For both defect datasets, the split unit is the spatial defect mask rather than an individual structure. Vacancy, B and N realizations of the same mask are therefore never separated across train and test. The 3D benchmark uses three seeds, five outer folds, three inner folds and 10 Optuna trials per outer split. The Matminer hybrid models in the main text are independently retuned within every outer training split.
+
+Paired confidence intervals use structural blocks: 120 allotropes for the 2D ablation and 500 spatial masks for the 3D defect comparisons. Each bootstrap replicate samples blocks with replacement, preserving repeated chemical realizations of a spatial mask.
+
+\section*{Supplementary Note 6: Numerical benchmark summary}
+
+\begin{table}[htbp]
+\centering
+\caption{\textbf{Key 2D metrics.} Errors for the allotrope target are in the native source-table unit; defect energies are in eV.}
+\begin{tabular}{lcc}
+\toprule
+Dataset / representation & MAE & \(R^2\)\\
+\midrule
+120 allotropes, mean baseline & \(0.2309\pm0.0005\) & \(-0.018\)\\
+120 allotropes, \(N+\rho\) & \(0.1247\pm0.0048\) & 0.669\\
+120 allotropes, ring descriptor & \(0.0540\pm0.0024\) & 0.909\\
+120 allotropes, ring + metadata & \(0.0518\pm0.0041\) & 0.915\\
+2D defects, count/type baseline & \(1.151\pm0.001\) & 0.935\\
+2D defects, ring descriptor & \(0.451\pm0.004\) & 0.988\\
+2D defects, Matminer & \(0.363\pm0.005\) & 0.989\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[htbp]
+\centering
+\caption{\textbf{Key 3D metrics for the 1,500 defective-diamond structures.}}
+\begin{tabular}{lcc}
+\toprule
+Representation & MAE (eV) & \(R^2\)\\
+\midrule
+Count/type baseline & \(0.7624\pm0.0020\) & 0.9703\\
+Legacy finite-cycle ring model & \(0.5798\pm0.0068\) & 0.9846\\
+Periodic edge-shortest ring model & \(0.2867\pm0.0087\) & 0.9939\\
+Averaged SOAP & \(0.3518\pm0.0061\) & 0.9890\\
+Matminer & \(0.2306\pm0.0016\) & 0.9962\\
+Matminer + 10 J features & \(0.2195\pm0.0017\) & 0.9963\\
+Matminer + topology/raw rings & \(0.2156\pm0.0066\) & 0.9965\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\section*{Supplementary Note 7: Formation-energy labels and scope}
+
+The defect datasets were constructed to test descriptor information content at a scale where thousands of geometry relaxations are needed. They therefore use MACE \texttt{small-omat-0} for both relaxation and total-energy evaluation. The graphene and diamond supercells were kept fixed and positions were relaxed to a maximum force of 0.05 eV\,\AA\(^{-1}\). All 1,500 diamond structures reached this threshold.
+
+Formation energies were constructed from energies evaluated by the same MACE model. Carbon reservoirs use pristine graphene or diamond consistently with the host; B uses \(\alpha\)-B$_{12}\); N uses an isolated N$_2$ reference in the principal target. These choices affect absolute formation energies, especially the N class, and are not presented as independent DFT thermochemistry. The role of the labels in this paper is to provide a common response surface on which structural representations can be compared.
+
+The MACE documentation notes that OMat24-based foundation models are materials-focused and do not contain gas-phase molecules in their pretraining set. For that reason the N$_2$ reservoir is an explicit limitation of the absolute N formation energies. The descriptor invariance, ring definitions, ablations and relative representation comparisons do not depend on interpreting those targets as DFT reference data.
+
+\section*{Supplementary Note 8: Feature definitions}
+
+\begin{longtable}{p{.25\linewidth}p{.68\linewidth}}
+\caption{\textbf{Feature blocks used in the ring descriptor.}}\\
+\toprule
+Block & Content\\
+\midrule
+\endfirsthead
+\toprule
+Block & Content\\
+\midrule
+\endhead
+Topology & graph-edge count; ring count; coordination statistics (3D); mean, standard deviation, minimum and maximum ring size; ring-size fractions.\\
+Raw geometry & mean and standard deviation of projected polygon area, perimeter, covariance anisotropy and mean radius.\\
+Joukowsky response & mean and standard deviation of transformed area, perimeter and anisotropy; mean and standard deviation of \(R_A=A_J/A\) and \(R_P=P_J/P\).\\
+Ring chemistry & mean/spread of B or N atoms per ring and fraction of rings containing the corresponding dopant, used only in chemically substituted defect datasets.\\
+Shared defect metadata & defect count and B/N indicator variables, supplied identically to competing models where stated.\\
+\bottomrule
+\end{longtable}
+
+The corrected 3D principal vector contains 57 ring-derived features before the shared defect metadata. SOAP contains 855 components for the parameters used here; the Matminer comparison contains 68 columns before constant-feature handling.
+
+\section*{Supplementary Note 9: Implementation timing}
+
+A stratified 27-structure sample was used for a simple wall-clock audit on the same machine. Mean extraction times were approximately 0.298 s for the current NetworkX-based periodic ring implementation, 0.0398 s for the Matminer pipeline and 0.00254 s for averaged SOAP. These values depend strongly on implementation and hardware. They are included only to prevent a misleading efficiency claim: the ring descriptor is compact and interpretable but the present graph-search implementation is not optimized for speed.
+
+\section*{Supplementary Note 10: Reproducibility package}
+
+The accompanying directory contains the manuscript and references, vector PDF and 600-dpi PNG versions of every figure, aggregated data underlying all panels, a single figure-generation script, the final descriptor implementations and automated tests, and a shell script for reproduction. The structural datasets are intentionally not duplicated inside the manuscript archive because the figure source tables are sufficient to regenerate every reported panel.
+
+\end{document}

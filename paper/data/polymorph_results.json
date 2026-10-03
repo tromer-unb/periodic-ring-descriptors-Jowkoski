@@ -1,0 +1,122 @@
+[
+  {
+    "name": "diamond",
+    "n_atoms": 2,
+    "degree_min": 4,
+    "degree_max": 4,
+    "n_rings": 4,
+    "rings_per_atom": 2.0,
+    "size_counts": {
+      "6": 4
+    },
+    "area_mean": 5.530179769182851,
+    "perimeter_mean": 8.753765971381334,
+    "anisotropy_mean": 1.0000000000000004,
+    "mean_radius_mean": 1.4589609952302225,
+    "j_area_mean": 5.508577504459481,
+    "j_perimeter_mean": 8.762583456110065,
+    "j_anisotropy_mean": 1.2844444444441407,
+    "j_area_ratio_mean": 0.9960937500000002,
+    "j_perimeter_ratio_mean": 1.0010072790108344
+  },
+  {
+    "name": "diamond_2x2x2",
+    "n_atoms": 16,
+    "degree_min": 4,
+    "degree_max": 4,
+    "n_rings": 32,
+    "rings_per_atom": 2.0,
+    "size_counts": {
+      "6": 32
+    },
+    "area_mean": 5.530179769182851,
+    "perimeter_mean": 8.753765971381334,
+    "anisotropy_mean": 1.0000000000000004,
+    "mean_radius_mean": 1.4589609952302225,
+    "j_area_mean": 5.508577504459481,
+    "j_perimeter_mean": 8.762583456110065,
+    "j_anisotropy_mean": 1.2844444444441405,
+    "j_area_ratio_mean": 0.99609375,
+    "j_perimeter_ratio_mean": 1.0010072790108344
+  },
+  {
+    "name": "lonsdaleite",
+    "n_atoms": 4,
+    "degree_min": 4,
+    "degree_max": 4,
+    "n_rings": 8,
+    "rings_per_atom": 2.0,
+    "size_counts": {
+      "6": 8
+    },
+    "area_mean": 5.268301931048176,
+    "perimeter_mean": 8.58343945367329,
+    "anisotropy_mean": 1.0852364271668402,
+    "mean_radius_mean": 1.424584060680841,
+    "j_area_mean": 5.2413324356579905,
+    "j_perimeter_mean": 8.593216510369947,
+    "j_anisotropy_mean": 1.3091947951701335,
+    "j_area_ratio_mean": 0.9948627839474441,
+    "j_perimeter_ratio_mean": 1.0011398124233502
+  },
+  {
+    "name": "lonsdaleite_2x2x2",
+    "n_atoms": 32,
+    "degree_min": 4,
+    "degree_max": 4,
+    "n_rings": 64,
+    "rings_per_atom": 2.0,
+    "size_counts": {
+      "6": 64
+    },
+    "area_mean": 5.2683019310481765,
+    "perimeter_mean": 8.58343945367329,
+    "anisotropy_mean": 1.0852364271668402,
+    "mean_radius_mean": 1.424584060680841,
+    "j_area_mean": 5.241332435657991,
+    "j_perimeter_mean": 8.593216510369945,
+    "j_anisotropy_mean": 1.3091947951701335,
+    "j_area_ratio_mean": 0.9948627839474441,
+    "j_perimeter_ratio_mean": 1.00113981242335
+  },
+  {
+    "name": "graphite",
+    "n_atoms": 4,
+    "degree_min": 3,
+    "degree_max": 3,
+    "n_rings": 2,
+    "rings_per_atom": 0.5,
+    "size_counts": {
+      "6": 2
+    },
+    "area_mean": 5.273802561410221,
+    "perimeter_mean": 8.548447337592702,
+    "anisotropy_mean": 1.0000003055244848,
+    "mean_radius_mean": 1.424741222932117,
+    "j_area_mean": 5.253201770154709,
+    "j_perimeter_mean": 8.557058009171083,
+    "j_anisotropy_mean": 1.2844444444443084,
+    "j_area_ratio_mean": 0.9960937499999993,
+    "j_perimeter_ratio_mean": 1.0010072790108344
+  },
+  {
+    "name": "graphite_2x2x2",
+    "n_atoms": 32,
+    "degree_min": 3,
+    "degree_max": 3,
+    "n_rings": 16,
+    "rings_per_atom": 0.5,
+    "size_counts": {
+      "6": 16
+    },
+    "area_mean": 5.273802561410221,
+    "perimeter_mean": 8.548447337592702,
+    "anisotropy_mean": 1.0000003055244848,
+    "mean_radius_mean": 1.4247412229321168,
+    "j_area_mean": 5.253201770154708,
+    "j_perimeter_mean": 8.557058009171083,
+    "j_anisotropy_mean": 1.2844444444443084,
+    "j_area_ratio_mean": 0.9960937499999993,
+    "j_perimeter_ratio_mean": 1.0010072790108344
+  }
+]

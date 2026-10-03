@@ -1,0 +1,7 @@
+{
+  "mean_delta_mae_tunedJ_minus_raw": 0.0011672796126206708,
+  "ci95_low": -0.001324820236846805,
+  "ci95_high": 0.003693011802097154,
+  "p_boot_delta_ge_0": 0.81765,
+  "n_systems": 120
+}
